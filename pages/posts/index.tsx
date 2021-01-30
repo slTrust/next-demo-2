@@ -1,29 +1,9 @@
+import { usePosts } from "hooks/usePosts";
 import { NextPage } from "next";
-import axios from 'axios';
-import { useEffect, useState } from "react";
 
-type Posts = {
-  id: string;
-  date: string;
-  title: string;
-  content: string;
-}
+
 const PostsIndex: NextPage = () => {
-  const [posts, setPosts] = useState<Posts[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isEmpty, setIsEmpty] = useState(false);
-  useEffect(() => {
-    setIsLoading(true)
-    axios.get('/api/v1/posts2').then(response => {
-      setTimeout(() => {
-        setPosts(response.data)
-        if (response.data.length === 0) {
-          setIsEmpty(true);
-        }
-        setIsLoading(false)
-      }, 3000);
-    })
-  }, [])
+  const { isLoading, isEmpty, posts } = usePosts();
   return (
     <div>
       Post Index
