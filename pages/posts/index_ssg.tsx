@@ -1,5 +1,5 @@
-import { Post } from "hooks/usePosts";
-import getPosts from "lib/posts";
+import getPosts, { Post } from "lib/posts";
+import Link from 'next/link';
 import { NextPage } from "next";
 
 interface Props {
@@ -8,16 +8,17 @@ interface Props {
 const PostsIndex: NextPage<Props> = (props) => {
   // 这个 posts是 前端/后端 都可以拿到的
   const { posts } = props;
-  console.log(posts)
   return (
     <div>
       Post Index(SSG)
       {posts.map(p => {
         return (
-          <div key={p.id}>{p.id}</div>
+          <div key={p.id}>
+            <Link href={`/posts/${p.id}`}>{p.id}</Link>
+          </div>
         )
       })}
-    </div>
+    </div >
   )
 }
 

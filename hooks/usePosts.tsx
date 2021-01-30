@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import { Post } from "lib/posts";
 
-export type Post = {
-  id: string;
-  date: string;
-  title: string;
-  content: string;
-}
 
 export const usePosts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
