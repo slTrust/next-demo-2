@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-type Posts = {
+export type Post = {
   id: string;
   date: string;
   title: string;
@@ -9,12 +9,12 @@ type Posts = {
 }
 
 export const usePosts = () => {
-  const [posts, setPosts] = useState<Posts[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   useEffect(() => {
     setIsLoading(true)
-    axios.get('/api/v1/posts2').then(response => {
+    axios.get('/api/v1/posts').then(response => {
       setTimeout(() => {
         setPosts(response.data)
         if (response.data.length === 0) {
