@@ -10,8 +10,7 @@ const postShow: NextPage<Props> = (props) => {
     <div>
       文章详情
       <h1>{post.title}</h1>
-      <article>
-        {post.content}
+      <article dangerouslySetInnerHTML={{ __html: post.htmlContent }}>
       </article>
 
     </div>
