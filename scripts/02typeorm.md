@@ -24,3 +24,14 @@ node /dist/index.js
 # 修改 ormconfig.json 的配置
 "synchronize": false,
 ```
+
+### 创建表
+
+- 创建 posts 表
+- `npx typeorm migration:create -n CreatePost`
+  - 得到 `src/migrations/{TIMESTAMP}-CreatePost.ts`
+  - 编写对应的 up/down函数
+- 运行 migration
+  - `npx babel .src --out-dir dist --extensions ".ts,.tsx"` 编译 ts 为 js
+  - `npx typeorm migration:run` 创建表 up操作
+  - `npx typeorm migration:revert` drop表 down操作
