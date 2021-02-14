@@ -15,12 +15,14 @@
     "pg": "^8.2.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "sass": "^1.32.5"
+    "sass": "^1.32.5",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.25"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/marked": "^1.2.2",
-    "@types/node": "^14.14.22",
+    "@types/node": "^14.0.6",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "marked": "^2.0.0",
