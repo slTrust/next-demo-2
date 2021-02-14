@@ -9,7 +9,7 @@
     "typeorm:build": "babel ./src --out-dir dist --extensions .ts,.tsx",
     "migration:run": "typeorm migration:run",
     "migration:revert": "typeorm migration:revert",
-    "dev:mac_linux": "next dev & babel -w ./src --out-dir dist --extensions .ts,.tsx"
+    "entity:create": "typeorm entity:create"
   },
   "dependencies": {
     "@babel/cli": "^7.10.1",
