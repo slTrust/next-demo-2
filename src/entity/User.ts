@@ -18,10 +18,10 @@ export class User {
     username: string;
     @Column('varchar')
     passwordDigest: string;
-    @CreateDateColumn('time')
+    @CreateDateColumn()
     createdAt: Date;
-    @UpdateDateColumn('time')
-    updateAt: Date;
+    @UpdateDateColumn()
+    updatedAt: Date;
     @OneToMany(type => Post, post => post.author)
     posts: Post[];
     @OneToMany(type => Comment, comment => comment.user)
