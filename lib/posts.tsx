@@ -4,13 +4,6 @@ import matter from 'gray-matter';
 import marked from 'marked';
 const markdownDir = path.join(process.cwd(), 'markdown')
 
-export type Post = {
-  id: string;
-  date: string;
-  title: string;
-  content: string;
-  htmlContent: string;
-}
 const getPosts = async () => {
   const fileNames = await fsPromise.readdir(markdownDir)
   const posts = fileNames.map(fileName => {

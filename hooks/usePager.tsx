@@ -20,7 +20,6 @@ export const usePager = (options: Options) => {
     const pageNumbers = _.uniq(numbers).sort().filter(n => n >= 1 && n <= totalPage)
         .reduce((result, n) => n - (result[result.length - 1] || 0) === 1 ?
             result.concat(n) : result.concat(-1, n), []);
-    console.log('inner')
     const pager = (
         <div className="wrapper">
             {page !== 1 && <Link href={urlMaker(page - 1)}><a>上一页</a></Link>}

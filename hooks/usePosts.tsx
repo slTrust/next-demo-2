@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
-import { Post } from "lib/posts";
 
 
 export const usePosts = () => {
