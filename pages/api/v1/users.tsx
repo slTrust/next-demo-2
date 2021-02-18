@@ -19,7 +19,6 @@ const Posts: NextApiHandler = async (req, res) => {
         res.write(JSON.stringify(user.errors));
     }else{
         try {
-            user.passwordDigest = md5(password);
             await connection.manager.save(user);
             res.statusCode = 200;
             res.write(JSON.stringify(user));
