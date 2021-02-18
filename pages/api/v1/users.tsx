@@ -5,6 +5,7 @@ import md5 from 'md5';
 
 const Posts: NextApiHandler = async (req, res) => {
     const {username, password, passwordConfirmation} = req.body;
+    const connection = await getDatabaseConnection();// 第一次链接能不能用 get
     const errors = {
         username: [] as string[], password: [] as string[], passwordConfirmation: [] as string[]
     };
@@ -20,6 +21,10 @@ const Posts: NextApiHandler = async (req, res) => {
     if (username.trim().length <= 3) {
         errors.username.push('太短');
     }
+    const found = connection.manager.find(User,{username})
+    if (found) {
+        errors.username.push('已存在，不能重复注册');
+    }
     if (password === '') {
         errors.password.push('不能为空');
     }
@@ -32,15 +37,20 @@ const Posts: NextApiHandler = async (req, res) => {
         res.statusCode = 422;
         res.write(JSON.stringify(errors));
     } else {
-        const connection = await getDatabaseConnection();// 第一次链接能不能用 get
         const user = new User();
         user.username = username.trim();
         user.passwordDigest = md5(password);
-        await connection.manager.save(user);
-        res.statusCode = 200;
-        res.write(JSON.stringify(user));
+        try {
+            await connection.manager.save(user);
+            res.statusCode = 200;
+            res.write(JSON.stringify(user));
+        }catch (error) {
+            res.statusCode = 422;
+            errors.username.push('msg:'+error.message,'detail:'+error.detail);
+            res.write(JSON.stringify(errors));
+        }
+        res.end();
     }
-    res.end();
 };
 
 export default Posts;
