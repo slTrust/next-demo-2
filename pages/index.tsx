@@ -19,7 +19,7 @@ export const getServerSideProps:GetServerSideProps = async (context)=>{
     console.log('connect');
     return {
         props: {
-            aaa:'aaaa'
+            aaa:'aaadaa'
         }
     }
 
