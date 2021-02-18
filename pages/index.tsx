@@ -1,26 +1,31 @@
 import React from 'react';
-import Link from 'next/link';
-import {GetServerSideProps} from "next";
+import {GetServerSideProps, NextPage} from "next";
 import {getDatabaseConnection} from '../lib/getDatabaseConnection';
 console.log('执行了 index.tsx')
-export default function x() {
+import {Post} from '../src/entity/Post';
+
+type Props = {
+  posts: Post[];
+}
+
+const index: NextPage<Props> = (props) => {
+  const {posts} = props;
   return (
     <>
-      <div>home
-        <Link href="/posts/index_bsr">posts BSR</Link>
-        <Link href="/posts/index_ssg">posts SSG</Link>
+      <div>
+          {posts.map(post => <div key={post.id}>{post.title}</div>)}
       </div>
     </>
   )
 }
+export default index;
 
 export const getServerSideProps:GetServerSideProps = async (context)=>{
-    const connect = await getDatabaseConnection()// 第一次链接能不能用 get
-    console.log('connect');
-    return {
-        props: {
-            aaa:'aaadaa'
-        }
+  const connection = await getDatabaseConnection()// 第一次链接能不能用 get
+  const posts = await connection.manager.find(Post)
+  return {
+    props: {
+      posts:JSON.parse(JSON.stringify(posts))
     }
-
+  }
 }
