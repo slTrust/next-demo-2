@@ -16,6 +16,7 @@
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.12.16",
     "axios": "^0.21.1",
+    "github-markdown-css": "^4.0.0",
     "gray-matter": "4.0.2",
     "lodash": "^4.17.15",
     "marked": "^2.0.0",
