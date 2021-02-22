@@ -5,7 +5,7 @@ COPY package.json ./
 # 因为我们用的是 yarn 不是 npm
 COPY yarn.lock ./
 # run 开头 代表运行 命令 设置超时时间
-RUN  yarn cache clean & yarn install --network-timeout 60000
+RUN yarn install --network-timeout 6000
 # 这个意思是 把你项目根目录的内容 拷贝到 工作目录
 COPY . .
 # 暴露端口
